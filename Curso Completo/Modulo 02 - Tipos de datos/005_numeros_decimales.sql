@@ -1,3 +1,116 @@
+-- ===== CLASE 005: NÚMEROS DECIMALES: NUMERIC, REAL, DOUBLE PRECISION =====
+
+/*
+OBJETIVO
+Elegir el tipo decimal correcto según si el dato exige exactitud (dinero)
+o solo una aproximación suficiente (mediciones).
+
+CONCEPTO
+PostgreSQL tiene dos familias de decimales. NUMERIC guarda el número de forma
+EXACTA, con la precisión y la escala que tú defines. REAL y DOUBLE PRECISION
+guardan una APROXIMACIÓN binaria (coma flotante): son rápidos y compactos,
+pero no representan exactamente todos los decimales.
+
+PARA QUÉ SIRVE (casos de uso en análisis de datos)
+1. Precios, saldos e impuestos de ventas y finanzas: NUMERIC, porque cada
+   centavo debe cuadrar.
+2. Mediciones de sensores, laboratorio o clima (temperatura, presión, pH):
+   DOUBLE PRECISION o NUMERIC según la exactitud requerida.
+3. Coordenadas geográficas y variables estadísticas con muchos decimales:
+   DOUBLE PRECISION, donde una diferencia microscópica no afecta el análisis.
+
+SINTAXIS GENERAL (así se declara el tipo de una columna; CREATE TABLE se
+explica en la clase 010)
+
+   nombre_columna  NUMERIC(precision, escala)
+   nombre_columna  NUMERIC
+   nombre_columna  REAL
+   nombre_columna  DOUBLE PRECISION
+
+   - precision: cantidad TOTAL de dígitos (antes y después del punto).
+   - escala: cuántos de esos dígitos van DESPUÉS del punto.
+   - dígitos enteros permitidos = precision - escala.
+   - NUMERIC sin argumentos: guarda el valor tal como se inserta, sin límite práctico.
+   - NUMERIC(p): equivale a NUMERIC(p, 0), es decir, sin decimales.
+   - Sinónimos: DECIMAL = NUMERIC; FLOAT4 = REAL; FLOAT8 = DOUBLE PRECISION.
+
+COMPARACIÓN DE LOS TRES TIPOS
+
+ tipo              | espacio  | precisión                        | resultado
+-------------------+----------+----------------------------------+-------------
+ NUMERIC(p,s)      | variable | exacta; hasta 131072 dígitos     | exacto
+                   |          | antes del punto y 16383 después  |
+ REAL              | 4 bytes  | aprox. 6 dígitos significativos  | aproximado
+ DOUBLE PRECISION  | 8 bytes  | aprox. 15 dígitos significativos | aproximado
+
+EJEMPLOS (los datos son ilustrativos; no los ejecutes: las tablas del SETUP son otras)
+
+Ejemplo 1: la misma cifra en los tres tipos.
+Tabla catalogo_demo (id INTEGER, producto VARCHAR(20), precio NUMERIC(8,2),
+peso_real REAL, peso_doble DOUBLE PRECISION). Valores escritos al insertar:
+  1: Cafe molido, 3.1,   1234567.891, 1234567.891
+  2: Te verde,    5.678, 0.1,         0.1
+  3: Cacao,       12.5,  16777217,    16777217
+
+   SELECT * FROM catalogo_demo;
+
+ id | producto    | precio | peso_real | peso_doble
+----+-------------+--------+-----------+-------------
+  1 | Cafe molido |   3.10 | 1234567.9 | 1234567.891
+  2 | Te verde    |   5.68 |       0.1 |         0.1
+  3 | Cacao       |  12.50 |  16777216 |    16777217
+
+   Lo que el resultado no dice por sí solo: NUMERIC(8,2) siempre muestra 2
+   decimales (3.1 pasa a 3.10) y redondea lo que sobra (5.678 pasa a 5.68).
+   REAL perdió dígitos (1234567.891 quedó en 1234567.9 y 16777217 en 16777216),
+   mientras DOUBLE PRECISION los conservó.
+
+Ejemplo 2: el límite de NUMERIC(5,2).
+Tabla sensores_demo (id INTEGER, sensor VARCHAR(10), temperatura NUMERIC(5,2)).
+Valores escritos: 99.5, 100, -12.345, 0
+
+   SELECT * FROM sensores_demo;
+
+ id | sensor   | temperatura
+----+----------+-------------
+  1 | Horno A  |       99.50
+  2 | Horno B  |      100.00
+  3 | Camara   |      -12.35
+  4 | Entrada  |        0.00
+
+   Con precision 5 y escala 2 quedan 3 dígitos enteros: el valor máximo es
+   999.99. Insertar 1000 produce "ERROR: numeric field overflow".
+
+Ejemplo 3: NUMERIC sin precision ni escala.
+Tabla tarifas_demo (id INTEGER, concepto VARCHAR(12), tasa NUMERIC).
+Valores escritos: 0.075, 12, 1.50, 0.3333333333
+
+   SELECT * FROM tarifas_demo;
+
+ id | concepto   | tasa
+----+------------+--------------
+  1 | Comision   |        0.075
+  2 | Cargo fijo |           12
+  3 | Recargo    |         1.50
+  4 | Interes    |  0.3333333333
+
+   Sin argumentos, cada valor conserva exactamente los decimales con que se
+   escribió: no hay redondeo ni relleno con ceros.
+
+ERRORES Y BUENAS PRÁCTICAS
+- Error: guardar dinero en REAL o DOUBLE PRECISION. No hay mensaje de error:
+  los totales salen con diferencias minúsculas porque 0.1 no tiene
+  representación binaria exacta.
+- Error: "numeric field overflow". Causa: la parte entera del valor supera
+  precision - escala dígitos; en NUMERIC(5,2) solo caben 3 enteros.
+- Error: declarar NUMERIC(10) y esperar decimales. Causa: sin escala equivale
+  a NUMERIC(10,0) y todo se redondea a entero.
+- Buena práctica: usar NUMERIC(p,s) para precios, saldos e impuestos, y
+  DOUBLE PRECISION para mediciones donde la aproximación es aceptable.
+- Buena práctica: calcular precision y escala con el valor máximo real del
+  negocio más un margen; evitar REAL salvo que el espacio sea crítico.
+*/
+
 -- ===== BLOQUE SETUP =====
 -- Nota: CREATE TABLE e INSERT se explican en clases posteriores (010 y 021).
 -- Por ahora solo ejecuta este bloque completo (Alt+X en DBeaver) sin modificarlo.

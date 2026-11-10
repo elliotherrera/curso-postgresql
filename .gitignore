@@ -1,2 +1,2 @@
-# Ignora carpeta de ejercicios resueltos
-/ejercicios_resueltos/
+# Ignorar documentos markdown dentro de carpeta Curso Completo
+Curso Completo/**/*.md

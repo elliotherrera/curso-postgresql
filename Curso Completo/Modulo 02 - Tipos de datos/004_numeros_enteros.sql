@@ -1,3 +1,98 @@
+-- ===== CLASE 004: NÚMEROS ENTEROS (SMALLINT, INTEGER, BIGINT) =====
+
+/*
+OBJETIVO
+Elegir el tipo entero adecuado (SMALLINT, INTEGER o BIGINT) según el rango de valores que debe guardar una columna.
+
+CONCEPTO
+Un tipo entero guarda números sin parte decimal. PostgreSQL ofrece tres tamaños:
+cuantos más bytes ocupa el tipo, más grande es el rango, pero más espacio gasta cada valor.
+Si un valor no cabe en el rango del tipo, PostgreSQL lo rechaza con un error.
+
+PARA QUÉ SIRVE (casos reales en análisis de datos)
+1. Columnas de conteo o cantidad (unidades vendidas, número de clics) con el tamaño justo.
+2. Identificadores de registros (id_cliente, id_pedido) que pueden crecer a millones.
+3. Cifras muy grandes (población, montos en centavos, bytes transferidos) que exigen BIGINT.
+
+TABLA DE REFERENCIA
+
+  Tipo       Alias       Bytes   Rango
+  ---------  ----------  ------  ------------------------------------------------------
+  SMALLINT   INT2        2       -32.768 a 32.767
+  INTEGER    INT, INT4   4       -2.147.483.648 a 2.147.483.647
+  BIGINT     INT8        8       -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807
+
+SINTAXIS GENERAL
+(la creación de tablas se explicará en la clase 010; aquí solo se muestra dónde va el tipo)
+
+  CREATE TABLE nombre_tabla (
+      nombre_columna  tipo_entero
+  );
+
+  - nombre_columna: nombre con el que se identifica el dato.
+  - tipo_entero: SMALLINT, INTEGER o BIGINT; define el rango permitido.
+  - Los tres admiten negativos, cero y positivos.
+
+DESARROLLO
+
+Cada ejemplo parte de una tabla ilustrativa (no existe en el SETUP) y se consulta con SELECT * FROM.
+Los tipos de cada columna se indican entre paréntesis en la firma.
+
+--- Ejemplo 1: SMALLINT e INTEGER conviviendo ---
+libros (id_libro SMALLINT, paginas SMALLINT, ejemplares INTEGER)
+
+-- SELECT * FROM libros;
+
+-- Resultado esperado:
+--  id_libro | paginas | ejemplares
+-- ----------+---------+-----------
+--         1 |     320 |      15000
+--         2 |    1200 |    2300000
+--         3 |      85 |        980
+
+-- Las páginas nunca superan 32.767, así que SMALLINT alcanza.
+-- Los ejemplares pueden crecer mucho más, por eso INTEGER.
+
+--- Ejemplo 2: cuando INTEGER se queda corto ---
+poblacion_regiones (id_region SMALLINT, region, habitantes BIGINT)
+
+-- SELECT * FROM poblacion_regiones;
+
+-- Resultado esperado:
+--  id_region | region | habitantes
+-- -----------+--------+-----------
+--          1 | Asia   | 4700000000
+--          2 | Africa | 1400000000
+--          3 | Europa |  745000000
+
+-- 4.700.000.000 supera 2.147.483.647, por eso la columna debe ser BIGINT.
+-- Africa (1.400.000.000) todavía cabría en INTEGER, pero la columna
+-- se define según el valor más grande posible.
+
+--- Ejemplo 3: negativos y cero ---
+estaciones (id_estacion SMALLINT, estacion, temp_min_c SMALLINT)
+
+-- SELECT * FROM estaciones;
+
+-- Resultado esperado:
+--  id_estacion | estacion  | temp_min_c
+-- -------------+-----------+-----------
+--            1 | Vostok    |        -89
+--            2 | Lima      |         14
+--            3 | Glaciar X |          0
+
+-- Los enteros guardan negativos sin ningún ajuste; PostgreSQL no tiene enteros "sin signo".
+
+ERRORES Y BUENAS PRÁCTICAS
+- Error: guardar un valor fuera de rango. Mensaje típico: "ERROR: integer out of range"
+  (o "smallint out of range"). Causa: el valor no cabe en los bytes que usa el tipo.
+- Error: suponer que SMALLINT llega a 65.535. Al guardar 40000 aparece "smallint out of range".
+  Causa: PostgreSQL no tiene enteros sin signo; el máximo de SMALLINT es 32.767.
+- Buena práctica: usar INTEGER como opción por defecto para conteos e identificadores comunes.
+- Buena práctica: usar BIGINT cuando el dato pueda superar 2.147.483.647 (montos en centavos, población, eventos).
+- Buena práctica: usar SMALLINT solo si el máximo está garantizado por la naturaleza del dato (edad, mes, páginas).
+*/
+
 -- ===== BLOQUE SETUP =====
 -- Nota: CREATE TABLE e INSERT se explican más adelante (clases 010 y 021). Aquí se usan solo para preparar los datos de observación.
 --
