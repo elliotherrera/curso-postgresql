@@ -204,42 +204,42 @@ INSERT INTO productos_inventario (sku, descripcion, unidad, nota) VALUES
 /*
 PRÁCTICA GUIADA EN DBEAVER (marca cada paso al completarlo)
 
-[ ] 1. Selecciona todo el script y ejecútalo con Alt + X (Ejecutar script).
-[ ] 2. En el Navegador de bases de datos, haz clic derecho sobre tu base de datos
+[✔️] 1. Selecciona todo el script y ejecútalo con Alt + X (Ejecutar script).
+[✔️] 2. En el Navegador de bases de datos, haz clic derecho sobre tu base de datos
        y elige Refrescar (F5). Despliega el esquema practica y comprueba que
        aparecen 4 tablas: paises_ref, envios_log, empleados_rrhh y
        productos_inventario.
-[ ] 3. Ejecuta, una por una (Ctrl + Enter), estas consultas:
+[✔️] 3. Ejecuta, una por una (Ctrl + Enter), estas consultas:
        SELECT * FROM paises_ref;
        SELECT * FROM envios_log;
        SELECT * FROM empleados_rrhh;
        SELECT * FROM productos_inventario;
-[ ] 4. Haz doble clic sobre cada tabla en el Navegador y abre la pestaña
+[✔️] 4. Haz doble clic sobre cada tabla en el Navegador y abre la pestaña
        Columns (o Propiedades) para ver el tipo y el largo de cada columna.
-[ ] 5. Por cada tabla, recorre las filas del resultado y anota en comentarios:
-       a) Qué tipo de texto (CHAR, VARCHAR o TEXT) le asignarías a cada columna
-          y por qué.
-       b) Qué valores están cerca del límite de largo de su columna.
-       c) Qué pasaría si eligieras un límite más chico (por ejemplo VARCHAR(20)
-          en lugar de VARCHAR(40)) o CHAR en lugar de VARCHAR.
-[ ] 6. Observa la columna estado de envios_log y la columna observacion de
-       todas las tablas: anota qué diferencias ves entre los valores
-       (mayúsculas, minúsculas, vacíos, largos).
+[✔️] 5. Por cada tabla, recorre las filas del resultado y anota en comentarios:
+       a) Qué tipo de texto (CHAR, VARCHAR, TEXT) le asignarías a cada columna.
+       b) Qué valores específicos están peligrosamente cerca o exactamente en el
+          límite total del largo propuesto para su columna.
+       c)  Qué pasaría si eligieras un límite más chico.
 
 ESPACIO PARA TUS RESPUESTAS DEL PASO 5:
 */
 -- paises_ref:
---
---
+-- a) iso2 CHAR(2), iso3 CHAR(3), nombre VARCHAR(40), capital VARCHAR(20)
+-- b) el nombre 'República Bolivariana de Venezuela' tiene 34/40 caracteres a 6 del limite.
+-- c) si hubiese elegido VARCHAR(20) 34/20 excede 14 caracteres y tira error.
 -- envios_log:
---
---
+-- a) codigo_envio CHAR(8), destino VARCHAR(25), estado VARCHAR(12), observacion TEXT
+-- b) el destino 'Santiago de Chile' tiene 17/25 a 8 del limite.
+-- c) si hubiese elegido VARCHAR(15) 17/15, excede 2 y tira error
 -- empleados_rrhh:
---
---
+-- a) id_empleado INTEGER, sigla_area CHAR(3), nombre VARCHAR(25), apellido VARCHAR(30), cargo VARCHAR(40), biografia TEXT
+-- b) el nombre 'Juan Sebastián Alejandro' 24/25 a 1 del limite
+-- c) si hubiese elegido VARCHAR(20) tendria 24/20, excede 4 y tiraria error
 -- productos_inventario:
---
---
+-- a) sku CHAR(6), descripcion VARCHAR(30), unidad CHAR(3), nota TEXT
+-- b) descripcion tiene 'Tornillo hexagonal acero inox.' 30/30 al limite.
+-- c) si hubiese elegido VARCHAR(25) tendria 30/25, excede 5 y tiraria error.
 
 /*
 PREGUNTAS DE COMPRENSIÓN
@@ -254,10 +254,13 @@ PREGUNTAS DE COMPRENSIÓN
 
 3) En envios_log, la observación del envío ENV00007 es mucho más larga que las
    demás y la del envío ENV00003 está vacía. ¿Por qué es razonable que
-   observacion sea TEXT y no VARCHAR(30)? ¿Qué diferencia hay entre una cadena
-   vacía '' y un valor que no existe?
+   observacion sea TEXT y no VARCHAR(30)?
 */
 -- Escribe tus respuestas aquí:
--- 1)
--- 2)
--- 3)
+-- 1) CHAR sirve para iso2 porque se sabe que siempre seran 2 caracteres pero capital es variable en este caso sirve mas un VARCHAR
+-- 2) Si tuviese 1 caracter mas tiraria error por estar fuera de rango de los 30 declarados en VARCHAR(30), seria mejor pre establecer un margen decente quizas podria ser VARCHAR(50) dependiendo del negocio. si colocamos TEXT no hay limite de caracteres
+-- 3) Una observacion puede ser bastanet descriptiva y no podriamos encapsularlo en un VARCHAR, este tipo de columnas se recomienda TEXT que no tiene limite de caracteres
+
+
+
+

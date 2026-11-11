@@ -177,21 +177,15 @@ INSERT INTO eventos_log (id_evento, codigo_error, duracion_milisegundos, usuario
 (7, 200, 45, 3, 1);
 
 -- ===== BLOQUE PRÁCTICA =====
---
--- Checklist de pasos:
--- 1. Abre DBeaver y conéctate a tu base local de PostgreSQL; abre un editor SQL nuevo.
--- 2. Ejecuta este archivo completo o solo el bloque SETUP. Verifica en el panel de resultados que no haya errores.
--- 3. Actualiza el navegador de base de datos y confirma que existen las cuatro tablas del esquema practica.
--- 4. Ejecuta SELECT * FROM ciudades; y observa cada columna.
---    En un comentario nuevo escribe qué tipo entero asignarías a habitantes, altitud_metros y anio_fundacion, y por qué.
--- 5. Ejecuta SELECT * FROM cuentas_bancarias; y compara saldo_centavos con los límites de SMALLINT, INTEGER y BIGINT.
---    Anota en comentarios qué valores de esa columna no cabrían en SMALLINT y cuáles no cabrían en INTEGER.
--- 6. Ejecuta SELECT * FROM inventario_repuestos; e identifica los valores cercanos a 32767, los ceros y los negativos.
---    Explica en comentarios qué ocurriría si stock se declarara SMALLINT y llegara a 40000.
--- 7. Ejecuta SELECT * FROM eventos_log; y observa duracion_milisegundos y bytes_transferidos.
---    Indica en comentarios qué tipo usarías para cada una y qué riesgo existe si eliges un tipo más pequeño.
---
+
 -- Preguntas de comprensión (responde en comentarios):
 -- 1. ¿Qué diferencia hay entre SMALLINT, INTEGER y BIGINT en términos de rango y almacenamiento?
+--    RPTA: SMALLINT tiene un rango desde -32 mil hasta +32 mil y ocupa 2 bytes
+--          INTEGER o INT tiene un rango desde -2.1 mil millones hasta +2.1 mil millones y ocupa 4 bytes
+--          BIGINT tiene un rango desde -9.2 trillones hasta +9.2 trillones y ocupa 8 bytes
+
 -- 2. ¿Por qué una columna con valores hasta 3.000.000.000 no puede ser INTEGER?
+--    RPTA: porque supera el limite de rango de 2.1 mil millones
+
 -- 3. ¿Qué error esperas si intentas guardar 40.000 en una columna SMALLINT y por qué?
+--    RPTA: error de fuera de rango debido a que su limite es de 32 767.

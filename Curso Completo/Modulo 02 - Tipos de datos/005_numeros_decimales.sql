@@ -202,47 +202,20 @@ INSERT INTO laboratorio_muestras VALUES
 -- ===== BLOQUE EJERCICIOS =====
 
 /*
-PRÁCTICA GUIADA EN DBEAVER (marca cada paso al completarlo)
-
-[ ] 1. Selecciona todo el script de este archivo y ejecútalo con Alt+X
-       (Ejecutar script). Verifica en la pestaña de salida que no hay errores.
-[ ] 2. En el Navegador de bases de datos, haz clic derecho sobre tu base de
-       datos y elige Refrescar (F5). Expande Esquemas > practica > Tablas y
-       confirma que aparecen las 4 tablas del SETUP.
-[ ] 3. Escribe debajo de este comentario una consulta SELECT * FROM por cada
-       tabla (ventas_cafeteria, estaciones_clima, cuentas_banco,
-       laboratorio_muestras) y ejecútalas una por una con Ctrl+Enter.
-[ ] 4. En cada resultado, observa cuántos decimales muestra cada columna y
-       cuáles muestran decimales fijos aunque el valor termine en cero.
-[ ] 5. Para cada columna decimal, escribe en comentarios: qué tipo le asignarías
-       (NUMERIC con qué precision y escala, REAL o DOUBLE PRECISION) y por qué.
-[ ] 6. Identifica en comentarios los valores más cercanos a los límites de su
-       tipo (los más grandes, los más pequeños, los negativos y los ceros) y
-       razona qué pasaría si eligieras un tipo con menos capacidad.
-[ ] 7. Abre cada tabla con doble clic > pestaña Columnas y compara el tipo
-       real con el que habías supuesto. Anota en comentarios cualquier diferencia.
-*/
-
--- Escribe aquí tus consultas SELECT * FROM:
-
-
-
--- Escribe aquí tus razonamientos en comentarios:
-
-
-
-/*
 PREGUNTAS DE COMPRENSIÓN (responde en comentarios, con tus palabras)
 
 1. Una tienda guarda sus precios en una columna DOUBLE PRECISION. ¿Qué riesgo
    corre al sumar miles de ventas y por qué NUMERIC(p,s) lo evita?
+   RPTA: DOUBLE PRECISION se calcula en base binaria, y puede haber ligeras variaciones que evita que los numeros cuadren. NUMERIC(p,e) al operar en base decimal evita esto.
 
 2. Una columna se declara NUMERIC(4,1). ¿Cuántos dígitos enteros admite y cuál
    es el valor positivo más grande que puede guardar? ¿Qué ocurre si se intenta
    guardar uno mayor?
+   RPTA: admite 3 digitos enteros y 1 decimal. El valor positivo mas grande es 999.9, si se intenta guardar uno mayor tira error de out of range.
 
 3. En laboratorio_muestras, las columnas concentracion_mg (REAL) y masa_g
    (DOUBLE PRECISION) reciben los mismos valores. Observa los resultados:
    ¿cuál de las dos pierde dígitos en alguno de ellos y a qué se debe esa
    diferencia entre ambos tipos?
+   RPTA: REAL pierde digitos debido a que solo asegura 6 digitos significativos mientras que DOUBLE PRECISION asegura 15
 */
