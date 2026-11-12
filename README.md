@@ -8,14 +8,14 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 
 ## Progreso del curso
 
-`7 / 172 clases` · **4 % completado** · `165 pendientes`
+`9 / 172 clases` · **5 % completado**
 
 `▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱`
 
 | Módulo | Tema | Avance | Estado |
 | :--- | :--- | ---: | :---: |
-| 01 | Fundamentos y Entorno | 1 / 3 | 🟨 |
-| 02 | Tipos de Datos | 6 / 6 | ✅ |
+| 01 | Fundamentos y Entorno | 3 / 3 | 🟩 |
+| 02 | Tipos de Datos | 6 / 6 | 🟩 |
 | 03 | Crear y Modificar Estructuras | 0 / 11 | ⬜ |
 | 04 | Manipular Datos | 0 / 9 | ⬜ |
 | 05 | Consultas Básicas | 0 / 14 | ⬜ |
@@ -42,8 +42,8 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 ### Módulo 01 · Fundamentos y Entorno
 
 - [x] **001** — Datos, bases de datos relacionales y SQL: tablas, filas, columnas y PostgreSQL
-- [ ] **002** — Entorno: instalación de PostgreSQL y DBeaver, conexión, interfaz y esquema
-- [ ] **003** — Editor SQL en DBeaver: comentarios, ejecución y primer `SELECT * FROM`
+- [x] **002** — Entorno: instalación de PostgreSQL y DBeaver, conexión, interfaz y esquema
+- [x] **003** — Editor SQL en DBeaver: comentarios, ejecución y primer `SELECT * FROM`
 
 ### Módulo 02 · Tipos de Datos
 
