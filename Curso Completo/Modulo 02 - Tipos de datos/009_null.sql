@@ -188,10 +188,20 @@ INSERT INTO clientes VALUES
 PREGUNTAS DE COMPRENSIÓN (responde en comentarios)
 1. ¿Por qué NULL = NULL no devuelve TRUE? ¿Qué devuelve exactamente y qué
    implica eso para cualquier filtro que escribas más adelante?
+   RPTA: la comparacion no devuelve true porque estas igualando valores desconocidos, 
+   la respuesta sera NULL, el filtro produce NULL no TRue por eso devuelve 0 filas
+   
 2. En empleados, la columna bono tiene NULL y 0.00. ¿Qué diferencia hay entre
    ambos para el negocio? ¿Cuál usarías para "no recibió bono" y cuál para
    "todavía no se registró"?
+   RPTA: la diferencia es que 0.00 es que ya se ha definido que un empleado recibira 0,
+   mientras que NULL significa no aplica o no se registra todavia.
+   
 3. En clientes, la columna correo tiene '', NULL y direcciones reales. ¿Qué
    representa cada caso y por qué conviene no usar '' para "sin correo"?
+   RPTA: NULL = sin dato / no tiene / no se registro y los '' deberian limpiarse a NULL
 */
+
+
+
 
