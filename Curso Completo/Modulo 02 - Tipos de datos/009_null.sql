@@ -181,34 +181,8 @@ INSERT INTO clientes VALUES
 (8, 'Diego Paz',    'diego@mail.com', NULL);
 
 -- ============================================================
--- BLOQUE PRÁCTICA GUIADA (DBeaver)
--- Marca cada paso a medida que lo completas.
+-- BLOQUE PRÁCTICA
 -- ============================================================
-/*
-CHECKLIST
-[ ] 1. Abre DBeaver, conecta la base y abre una hoja de editor SQL nueva.
-[ ] 2. Ejecuta el bloque SETUP completo (selecciónalo y usa Ctrl+Enter).
-[ ] 3. Revisa la pestaña de mensajes: deben aparecer cuatro CREATE TABLE y
-       cuatro INSERT sin error.
-[ ] 4. En el panel de navegación, actualiza el esquema practica y confirma
-       que existen las tablas empleados, envios, lecturas_clima y clientes.
-[ ] 5. Ejecuta:  SELECT * FROM empleados;
-       Observa cuántas filas hay y qué celdas aparecen como (null).
-[ ] 6. Repite el paso 5 con envios, lecturas_clima y clientes, una por una.
-[ ] 7. En comentarios debajo de cada consulta, anota qué columnas tienen
-       NULL, cuántas filas afectan y qué significa ese NULL en el negocio.
-[ ] 8. Compara casos que se parecen pero no son iguales:
-       - empleados.bono: NULL (no se sabe) frente a 0.00 (bono cero).
-       - envios.peso_kg: NULL (no se pesó) frente a 0.00 (peso cero).
-       - lecturas_clima.precipitacion: NULL (no se midió) frente a 0.0 mm.
-       - clientes.correo: NULL, '' (cadena vacía) y una dirección real.
-[ ] 9. Repaso de tipos (clases 004 a 008): para cada columna de las cuatro
-       tablas, anota en un comentario qué tipo le asignarías y por qué.
-       Fíjate en salario NUMERIC(10,2) frente a humedad SMALLINT, y en
-       temperatura NUMERIC(4,1) frente a peso_kg NUMERIC(6,2). Pregúntate
-       qué pasaría si eligieras un tipo más chico o entero para salario.
-[ ] 10. Guarda el script en tu equipo con un nombre como clase_009.sql.
-*/
 
 /*
 PREGUNTAS DE COMPRENSIÓN (responde en comentarios)
@@ -220,3 +194,4 @@ PREGUNTAS DE COMPRENSIÓN (responde en comentarios)
 3. En clientes, la columna correo tiene '', NULL y direcciones reales. ¿Qué
    representa cada caso y por qué conviene no usar '' para "sin correo"?
 */
+
