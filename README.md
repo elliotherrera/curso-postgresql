@@ -31,7 +31,7 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 | 15 | Avanzado | 0 / 21 | ⬜ |
 | 16 | Administración y Ecosistema | 0 / 11 | ⬜ |
 | PF | Proyecto Final | 0 / 5 | ⬜ |
-| **—** | **Total** | **7 / 172** | **4 %** |
+| **—** | **Total** | **9 / 172** | **5 %** |
 
 > Marca la casilla al terminar cada clase y actualiza los contadores de arriba.
 
