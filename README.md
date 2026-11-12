@@ -8,30 +8,29 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 
 ## Progreso del curso
 
-`9 / 172 clases` · **5 % completado**
+`10 / 172 clases` · **5 % completado**
 
 `▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱`
 
-| Módulo | Tema | Avance | Estado |
-| :--- | :--- | ---: | :---: |
-| 01 | Fundamentos y Entorno | 3 / 3 | 🟩 |
-| 02 | Tipos de Datos | 6 / 6 | 🟩 |
-| 03 | Crear y Modificar Estructuras | 0 / 11 | ⬜ |
-| 04 | Manipular Datos | 0 / 9 | ⬜ |
-| 05 | Consultas Básicas | 0 / 14 | ⬜ |
-| 06 | Expresiones y Conversión | 0 / 5 | ⬜ |
-| 07 | Agregaciones | 0 / 13 | ⬜ |
-| 08 | Joins y Operaciones de Conjuntos | 0 / 11 | ⬜ |
-| 09 | Funciones | 0 / 18 | ⬜ |
-| 10 | Subconsultas y CTEs | 0 / 9 | ⬜ |
-| 11 | Window Functions | 0 / 12 | ⬜ |
-| 12 | Diseño de Bases de Datos | 0 / 11 | ⬜ |
-| 13 | Índices y Rendimiento | 0 / 8 | ⬜ |
-| 14 | Transacciones | 0 / 5 | ⬜ |
-| 15 | Avanzado | 0 / 21 | ⬜ |
-| 16 | Administración y Ecosistema | 0 / 11 | ⬜ |
-| PF | Proyecto Final | 0 / 5 | ⬜ |
-| **—** | **Total** | **9 / 172** | **5 %** |
+| Módulo | Tema                             | Avance | Estado |
+| :----- | :------------------------------- | -----: | :----: |
+| 01     | Fundamentos y Entorno            |  3 / 3 |   🟩   |
+| 02     | Tipos de Datos                   |  6 / 6 |   🟩   |
+| 03     | Crear y Modificar Estructuras    | 1 / 11 |   🟨   |
+| 04     | Manipular Datos                  |  0 / 9 |   ⬜   |
+| 05     | Consultas Básicas                | 0 / 14 |   ⬜   |
+| 06     | Expresiones y Conversión         |  0 / 5 |   ⬜   |
+| 07     | Agregaciones                     | 0 / 13 |   ⬜   |
+| 08     | Joins y Operaciones de Conjuntos | 0 / 11 |   ⬜   |
+| 09     | Funciones                        | 0 / 18 |   ⬜   |
+| 10     | Subconsultas y CTEs              |  0 / 9 |   ⬜   |
+| 11     | Window Functions                 | 0 / 12 |   ⬜   |
+| 12     | Diseño de Bases de Datos         | 0 / 11 |   ⬜   |
+| 13     | Índices y Rendimiento            |  0 / 8 |   ⬜   |
+| 14     | Transacciones                    |  0 / 5 |   ⬜   |
+| 15     | Avanzado                         | 0 / 21 |   ⬜   |
+| 16     | Administración y Ecosistema      | 0 / 11 |   ⬜   |
+| PF     | Proyecto Final                   |  0 / 5 |   ⬜   |
 
 > Marca la casilla al terminar cada clase y actualiza los contadores de arriba.
 
@@ -56,7 +55,7 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 
 ### Módulo 03 · Crear y Modificar Estructuras
 
-- [ ] **010** — `CREATE TABLE`
+- [x] **010** — `CREATE TABLE`
 - [ ] **011** — `NOT NULL` y `DEFAULT`
 - [ ] **012** — `PRIMARY KEY`
 - [ ] **013** — `SERIAL` e `IDENTITY`
