@@ -282,3 +282,6 @@ CREATE TABLE nomina_empleados (
   correo       VARCHAR(120) NOT NULL DEFAULT 'sin-correo',
   salario_base NUMERIC(10,2) NOT NULL DEFAULT 0
 );
+
+
+-- comentarios pruebas
