@@ -241,7 +241,6 @@ CREATE TABLE clientes_fidelidad (
 )
 
 /* EJERCICIO 4 (intermedio)
-   Combina tipos de datos (clases 004 a 009) con CREATE TABLE (010).
    Crea la tabla taller_ordenes con estas columnas:
    taller_ordenes (id_orden, descripcion, horas_trabajo, costo_repuestos, entregada, fecha_ingreso).
    Usa SMALLINT para id_orden, VARCHAR(80) para descripcion, NUMERIC(5,2) para horas_trabajo,
@@ -260,7 +259,6 @@ CREATE TABLE taller_ordenes (
 );
 
 /* EJERCICIO 5 (intermedio)
-   Combina DEFAULT con la elección de tipos (004 a 009).
    Crea la tabla camping_reservas con estas columnas:
    camping_reservas (id_reserva, titular, parcela, personas, tarifa_diaria, pago_confirmado, fecha_ingreso).
    Asigna a cada columna un DEFAULT coherente con su tipo (un entero para personas,
@@ -268,7 +266,17 @@ CREATE TABLE taller_ordenes (
    y una fecha literal para fecha_ingreso). Comenta por qué elegiste cada valor.
 */
 
-/* EJERCICIO 6 (intermedio, mezcla 3 temas: tipos 004-009, NULL 009, CREATE TABLE 010)
+CREATE TABLE camping_reservas (
+    id_reserva INTEGER NOT NULL,
+    titular,
+    parcela TEXT DEFAULT 'Sin datos ingresado',
+    personas INTEGER DEFAULT 0,
+    tarifa_diaria NUMERIC(6,2) DEFAULT 0,
+    pago_confirmado BOOLEAN DEFAULT FALSE,
+    fecha_ingreso TIMESTAMP DEAULT 'infinity'
+);
+
+/* EJERCICIO 6 
    Crea la tabla farmacia_medicamentos con estas columnas:
    farmacia_medicamentos (id_medicamento, nombre, principio_activo, stock, precio, receta_obligatoria, vencimiento).
    Al menos dos columnas deben admitir NULL de forma deliberada (justifica por qué en un comentario)
@@ -276,13 +284,30 @@ CREATE TABLE taller_ordenes (
    para dejar claro que DEFAULT y NOT NULL son cosas distintas.
 */
 
-/* EJERCICIO 7 (intermedio, mezcla 3 temas: tipos 004-009, NULL 009, CREATE TABLE 010 + interfaz de DBeaver)
+CREATE TABLE farmacio_medicamentos (
+    id_medicamento NOT NULL,   -- debe tener un dato obligatorio para control
+    nombre NOT NULL,           -- identificar el producto obligatorio
+    principio_activo NOT NULL,
+    stock DEFAULT 0,           -- puede que todavia no se ha contabilizado
+    precio,
+    receta_obligatoria NOT NULL DEFAULT -- puede que no se haya registrado la fecha de lote
+);
+
+/* EJERCICIO 7
    Crea la tabla cine_funciones con estas columnas:
    cine_funciones (id_funcion, pelicula, sala, butacas_totales, butacas_vendidas, precio_entrada, funcion_3d).
    Usa al menos tres tipos distintos, tres columnas NOT NULL y tres columnas con DEFAULT.
-   Después abre la pestaña DDL (o Propiedades) de la tabla en DBeaver y verifica que cada
-   restricción y cada default aparezcan tal como los declaraste.
 */
+
+CREATE TABLE cine_funciones (
+    id_funcion INTEGER NOT NULL,
+    pelicula VARCHAR(80) NOT NULL DEFAULT 'Por especificar',
+    sala SMALLINT NOT NULL DEFAULT 'Por confirmar',
+    butacas_totales INTEGER,
+    butacas_vendidas INTEGER,
+    precio_entrada NUMERIC(6,2),
+    funcion_3d BOOLEAN DEFAULT FALSE
+);
 
 /* EJERCICIO 8
    ¿Por qué no funciona? Explica el motivo y cómo corregirla.
