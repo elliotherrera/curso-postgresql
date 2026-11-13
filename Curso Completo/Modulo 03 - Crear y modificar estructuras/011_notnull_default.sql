@@ -200,6 +200,13 @@ INSERT INTO veterinaria_mascotas VALUES
    descripcion TEXT que admita NULL y estado VARCHAR(15) obligatorio.
 */
 
+CREATE TABLE soporte_tickets (
+    id_ticket INTEGER NOT NULL,
+    asunto VARCHAR(80) NOT NULL,
+    descripcion TEXT,
+    estado VARCHAR(15) NOT NULL
+);
+
 /* EJERCICIO 2 (básico)
    Crea la tabla inventario_equipos con estas columnas:
    inventario_equipos (id_equipo, nombre, disponible, ubicacion, garantia_meses).
@@ -208,6 +215,14 @@ INSERT INTO veterinaria_mascotas VALUES
    y garantia_meses SMALLINT con DEFAULT 12.
 */
 
+CREATE TABLE inventario_equipos (
+    id_equipo INTEGER NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    disponible BOOLEAN DEFAULT TRUE,
+    ubicacion VARCHAR(30) DEFAULT 'deposito',
+    garantia_meses SMALLINT DEFAULT 12
+);
+
 /* EJERCICIO 3 (básico)
    Crea la tabla clientes_fidelidad con estas columnas:
    clientes_fidelidad (id_cliente, nombre, correo, puntos, nivel, activo).
@@ -215,6 +230,15 @@ INSERT INTO veterinaria_mascotas VALUES
    y tres columnas con DEFAULT (puntos 0, nivel 'bronce', activo TRUE).
    correo debe admitir NULL y no llevar DEFAULT.
 */
+
+CREATE TABLE clientes_fidelidad (
+    id_cliente INTEGER NOT NULL,
+    nombre VARCHAR(40) NOT NULL,
+    correo VARCHAR(50),
+    puntos INTEGER DEFAULT 0,
+    nivel INTEGER NOT NULL DEFAULT 'bronce',
+    activo BOOLEAN DEFAULT TRUE
+)
 
 /* EJERCICIO 4 (intermedio)
    Combina tipos de datos (clases 004 a 009) con CREATE TABLE (010).
@@ -225,6 +249,15 @@ INSERT INTO veterinaria_mascotas VALUES
    Decide qué columnas deben ser NOT NULL y cuáles llevan DEFAULT, y deja un comentario
    explicando por qué cada columna obligatoria lo es.
 */
+
+CREATE TABLE taller_ordenes (
+    id_orden SMALLINT NOT NULL, -- El id es obligatorio para no perder registros
+    descripcion VARCHAR(80) DEFAULT 'sin descripcion', -- Puede ser NULL y un DEFAULT en caso n ose ingrese uan descripcion
+    horas_trabajo NUMERIC(5,2) NOT NULL, -- Dato importante debe estar y no conviene poner un DEFAULT ensucia datos
+    costo_repuestos NUMERIC(10,2) NOT NULL, -- Igual que el anterior
+    entregada BOOLEAN NOT NULL DEFAULT FALSE, -- Solo cambiar cuando se haya completado la entrega
+    fecha_ingreso DATE NOT NULL -- Dato importante que tampoco puede faltar no admitir NULL
+);
 
 /* EJERCICIO 5 (intermedio)
    Combina DEFAULT con la elección de tipos (004 a 009).
@@ -257,7 +290,7 @@ INSERT INTO veterinaria_mascotas VALUES
 */
 CREATE TABLE gimnasio_socios (
   id_socio INTEGER,
-  nombre   NOT NULL VARCHAR(50),
+  nombre   NOT NULL VARCHAR(50), -- error de sintaxys, primero va el tipo y luego la restriccion
   cuota    NUMERIC(8,2) DEFAULT 0,
   alta     DATE DEFAULT '2025-01-01'
 );
@@ -268,7 +301,7 @@ CREATE TABLE gimnasio_socios (
 */
 CREATE TABLE deposito_palets (
   id_palet INTEGER NOT NULL,
-  codigo   CHAR(5) DEFAULT 'pendiente',
+  codigo   CHAR(5) DEFAULT 'pendiente', -- CHAR(5) corta a 5 caracteres, 'pendiente' se corta en 'pendi'
   peso_kg  NUMERIC(6,2)
 );
 
@@ -280,8 +313,6 @@ CREATE TABLE nomina_empleados (
   id_empleado  INTEGER NOT NULL,
   nombre       VARCHAR(40) NOT NULL,
   correo       VARCHAR(120) NOT NULL DEFAULT 'sin-correo',
-  salario_base NUMERIC(10,2) NOT NULL DEFAULT 0
-);
+  salario_base NUMERIC(10,2) NOT NULL DEFAULT 0    
+); -- Funciona
 
-
--- comentarios pruebas

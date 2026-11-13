@@ -136,8 +136,8 @@ CREATE TABLE IF NOT EXISTS reservas (
 	fecha DATE,
 	hora TIME,
 	personas SMALLINT,
-   notas TEXT,
-   confirmada BOOLEAN
+    notas TEXT,
+    confirmada BOOLEAN
 );
 
 SELECT * FROM reservas;
