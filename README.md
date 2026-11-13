@@ -8,7 +8,7 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 
 ## Progreso del curso
 
-`10 / 172 clases` · **5 % completado**
+`11 / 172 clases` · **5 % completado**
 
 `▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱`
 
@@ -16,7 +16,7 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 | :----- | :------------------------------- | -----: | :----: |
 | 01     | Fundamentos y Entorno            |  3 / 3 |   🟩   |
 | 02     | Tipos de Datos                   |  6 / 6 |   🟩   |
-| 03     | Crear y Modificar Estructuras    | 1 / 11 |   🟨   |
+| 03     | Crear y Modificar Estructuras    | 2 / 11 |   🟨   |
 | 04     | Manipular Datos                  |  0 / 9 |   ⬜   |
 | 05     | Consultas Básicas                | 0 / 14 |   ⬜   |
 | 06     | Expresiones y Conversión         |  0 / 5 |   ⬜   |
@@ -56,7 +56,7 @@ Curso completo de **0 a administrador de bases de datos** con **PostgreSQL**, us
 ### Módulo 03 · Crear y Modificar Estructuras
 
 - [x] **010** — `CREATE TABLE`
-- [ ] **011** — `NOT NULL` y `DEFAULT`
+- [x] **011** — `NOT NULL` y `DEFAULT`
 - [ ] **012** — `PRIMARY KEY`
 - [ ] **013** — `SERIAL` e `IDENTITY`
 - [ ] **014** — `UNIQUE`
